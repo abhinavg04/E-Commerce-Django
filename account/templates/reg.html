@@ -1,0 +1,31 @@
+{% extends "landing.html" %}
+{% block main %}
+<section class="bg-image" style="background-image: url('https://www.crio.do/blog/content/images/2021/03/Python-projects-1.png');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center p-5" >
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5" >
+                            <h1 class="text-uppercase text-center mb-5">Create an account</h1>
+                            <form action="" method="post">
+                             {%csrf_token%}
+                             <table class="table text-center">
+                                {{form.as_table}}
+                             </table>
+                             <div class="text-center">
+                                <button class="btn btn-outline-light" style="background-color: blue;">Register</button>
+                             </div>
+                             <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'login' %}"
+                                class="fw-bold text-body"><u>Login here</u></a></p>
+                            </form>
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

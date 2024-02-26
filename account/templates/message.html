@@ -1,0 +1,17 @@
+
+{% if messages %}
+{% for i in messages %}
+    {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible">
+        <button class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+        <h4>{{i}}</h4>
+      </div>
+    {% endif %}
+    {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="btn-close" data-bs-dismiss="alert" aria-label="close">&times;</a>
+        <h4>{{i}}</h4>
+      </div>
+    {% endif %}
+{% endfor %}
+{% endif %}

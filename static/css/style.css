@@ -1,0 +1,37 @@
+*{
+    font-family: 'Raleway',sans-serif;
+}
+.navbar{
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+.navbar-brand{
+    font-weight: bold;
+    font-size: 2rem;
+    color: green;
+}
+.nav-link{
+    color: green;
+}
+.fa-shopping-bag,.fa-user,.fa-search{
+    color: green;
+}
+.hero-header{
+    background-image: url('../img/hero-img.jpg');
+    background-repeat: no-repeat;
+}
+.hero-text h1{
+    color: green;
+}  
+
+/*** featurs Start ***/
+.featurs .featurs-item .featurs-icon {
+    /* position: relative; */
+    background-color: green;
+    width: 120px;
+    height: 120px;
+    display: grid;
+    place-content: center;
+}
+
+/*** featurs End ***/
