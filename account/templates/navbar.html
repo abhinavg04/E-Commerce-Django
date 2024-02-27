@@ -30,10 +30,12 @@
             {% endif %}
             <li>
                 <div class="nav-item dropdown mx-4">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>
                     <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                        <a href="#" class="dropdown-item">Cart</a>
-                        <a href="#" class="dropdown-item">Chackout</a>
+                        <a href="{% url 'category' 'Vegetables' %}" class="dropdown-item">Vegetables</a>
+                        <a href="{% url 'category' 'Fruits' %}" class="dropdown-item">Fruits</a>
+                        <a href="{% url 'category' 'Diary' %}" class="dropdown-item">Milk Products</a>
+                        <a href="{% url 'category' 'Spices' %}" class="dropdown-item">Spices</a>
                     </div>
                 </div>
             </li>

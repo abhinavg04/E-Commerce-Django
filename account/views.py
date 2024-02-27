@@ -3,14 +3,18 @@ from django.views import View
 from .forms import RegForm,LoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views.generic import CreateView,FormView,TemplateView
 # Create your views here.
-def intro(request):
-    return render(request,'landing.html')
 
-class LoginView(View):
-    def get(self,request):
-        logform = LoginForm()
-        return render(request,'login.html',{'form':logform})
+# generic template view
+class Intro(TemplateView):
+    template_name='landing.html'
+
+# generic form view
+class LoginView(FormView):
+    form_class=LoginForm
+    template_name='login.html'
     def post(self,request):
         form_data = LoginForm(data=request.POST)
         if form_data.is_valid():
@@ -26,18 +30,24 @@ class LoginView(View):
                 return redirect('login')
         else:
             return render(request,'login.html',{'form':form_data})
-class RegView(View):
-    def get(self,request):
-        regform = RegForm()
-        return render(request,'reg.html',{'form':regform})
-    def post(self,request):
-        form_data = RegForm(data=request.POST)
-        if form_data.is_valid():
-            form_data.save()
-            messages.success(request,'Signup Successfull')
-            return redirect('login')
-        else:
-            return render(request,'login.html',{'form':form_data})
+# class RegView(View):
+#     def get(self,request):
+#         regform = RegForm()
+#         return render(request,'reg.html',{'form':regform})
+#     def post(self,request):
+#         form_data = RegForm(data=request.POST)
+#         if form_data.is_valid():
+#             form_data.save()
+#             messages.success(request,'Signup Successfull')
+#             return redirect('login')
+#         else:
+#             return render(request,'login.html',{'form':form_data})
+        
+# generic view createView
+class RegView(CreateView):
+    form_class=RegForm
+    template_name='reg.html'
+    success_url=reverse_lazy('login')
         
 def logout_user(request):
     logout(request)

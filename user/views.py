@@ -7,3 +7,7 @@ class UserHome(View):
         random_obj = Products.objects.all().order_by('?')[:6]
         return render(request,'userhome.html',{'products':random_obj})
     
+def category(request,category):
+    products = Products.objects.filter(category=category)
+    return render(request,'category_item_list.html',{'products':products})
+        
