@@ -16,6 +16,8 @@ class Products(models.Model):
     )
     category = models.CharField(max_length=100,choices = options)
     stock = models.IntegerField()
+    is_offer = models.BooleanField(default=False,null=True)
+    offer_price = models.IntegerField(null=True)
     def __str__(self) -> str:
         return self.title
 

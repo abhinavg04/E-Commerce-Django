@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from .forms import RegForm,LoginForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
 def intro(request):
@@ -38,3 +38,10 @@ class RegView(View):
             return redirect('login')
         else:
             return render(request,'login.html',{'form':form_data})
+        
+def logout_user(request):
+    logout(request)
+    return redirect('landing')
+
+def user_page(request):
+    return render(request,'user_page.html')
