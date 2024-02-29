@@ -1,0 +1,8 @@
+{% extends "landing.html" %}
+
+{% block main %}
+<h1>product details</h1>
+{% for product in products %}
+<p>{{product.title}}</p>
+{% endfor %}
+{% endblock main %}

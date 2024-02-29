@@ -13,6 +13,10 @@
 .nav-link{
     color: green;
 }
+.nav-link:hover { 
+    text-decoration: underline black;
+    text-underline-offset: 20px;
+}
 .fa-shopping-bag,.fa-user,.fa-search{
     color: green;
 }
@@ -35,4 +39,6 @@
 }
 
 /*** featurs End ***/
+
+
 
