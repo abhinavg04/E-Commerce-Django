@@ -6,7 +6,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav d-flex align-items-center">
+            <li>
+            <form class="position-relative mx-5" style="width: 300px;" action="{% url "search" %}">
+                <input class="form-control border-2 border-secondary py-3 px-4 rounded-pill" type="text" placeholder="Search" name='searched'>
+                <button type="submit" class="btn btn-success border-2 border-secondary position-absolute rounded-pill text-white h-100" style="top: 0; right: 0%;">Search</button>
+            </form>
+            </li>
             <li class="nav-item active">
               <a class="nav-link mx-4" href="{% url "landing" %}">Home</a>
             </li>
@@ -14,37 +20,39 @@
               <a class="nav-link mx-4" href="{% url 'userhome' %}">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4" href="#">About</a>
+              <a class="nav-link mx-4" href="{% url 'about' %}">About</a>
             </li>
+            <li>
+              <div class="nav-item dropdown mx-4">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>
+                  <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                      <a href="{% url 'category' 'Vegetables' %}" class="dropdown-item">Vegetables</a>
+                      <a href="{% url 'category' 'Fruits' %}" class="dropdown-item">Fruits</a>
+                      <a href="{% url 'category' 'Diary' %}" class="dropdown-item">Milk Products</a>
+                      <a href="{% url 'category' 'Spices' %}" class="dropdown-item">Spices</a>
+                  </div>
+              </div>
+          </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link mx-4" href="{% url 'logout' %}">logout</a>
+              <a class="btn btn-outline-danger mx-4" href="{% url 'logout' %}">logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link mx-4" href="{% url 'login' %}">login</a>
+              <a class="btn btn-success mx-4 px-4" href="{% url 'login' %}">login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4" href="{% url 'reg' %}">Register</a>
+              <a class="btn btn-outline-success mx-4" href="{% url 'reg' %}">Register</a>
             </li>
             {% endif %}
-            <li>
-                <div class="nav-item dropdown mx-4">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>
-                    <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                        <a href="{% url 'category' 'Vegetables' %}" class="dropdown-item">Vegetables</a>
-                        <a href="{% url 'category' 'Fruits' %}" class="dropdown-item">Fruits</a>
-                        <a href="{% url 'category' 'Diary' %}" class="dropdown-item">Milk Products</a>
-                        <a href="{% url 'category' 'Spices' %}" class="dropdown-item">Spices</a>
-                    </div>
-                </div>
-            </li>
           </ul>
           <div class="d-flex m-3 me-0">
-            <button class="btn-search btn border border-success btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
-            <a href="#" class="position-relative me-4 my-auto">
-                <i class="fa fa-shopping-bag fa-2x"></i>
-                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+            <a href="{% url "order" %}" class="position-relative me-4 my-auto">
+              <i class="fa fa-shopping-bag fa-2x"></i>
+            </a>
+            <a href="{% url "cart" %}" class="position-relative me-4 my-auto">
+              <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{count}}</span>
             </a>
             {% if user.is_authenticated %}
             <a href="{% url 'user_page' %}" class="my-auto">

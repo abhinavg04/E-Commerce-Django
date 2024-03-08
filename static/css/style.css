@@ -17,7 +17,7 @@
     text-decoration: underline black;
     text-underline-offset: 20px;
 }
-.fa-shopping-bag,.fa-user,.fa-search{
+.fa-shopping-bag,.fa-user,.fa-search,.fa-cart-shopping{
     color: green;
 }
 .hero-header{
@@ -39,6 +39,9 @@
 }
 
 /*** featurs End ***/
+/* .img-thumbnail{
+    object-fit: fill;
+} */
 
 
 

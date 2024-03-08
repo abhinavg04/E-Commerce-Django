@@ -6,11 +6,14 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView,FormView,TemplateView
 from django.contrib.auth.models import User
+from . models import Products
 # Create your views here.
 
 # generic template view
 class Intro(TemplateView):
     template_name='landing.html'
+class About(TemplateView):
+    template_name='about.html'
 
 # generic form view
 class LoginView(FormView):
@@ -66,7 +69,7 @@ def update_user(request):
             messages.success(request,'Successfully updated')
             return redirect('user_page')
         else:
-            return render(request,'update_user.html',{'form':update_form})
+            return render(request,'update_user.html',{'form':update_form})   
     return render(request,'update_user.html',{'form':update_form})
 
 
@@ -74,8 +77,10 @@ class UpdatePassword(View):
     def get(self,request):
         if request.user.is_authenticated:
             current_user = request.user
-        form = ChangePassword(current_user)
-        return render(request,'update_password.html',{'form':form})
+            form = ChangePassword(current_user)
+            return render(request,'update_password.html',{'form':form})
+        else:
+            return redirect('user_page')
     def post(self,request):
         if request.user.is_authenticated:
             current_user = request.user
@@ -86,5 +91,13 @@ class UpdatePassword(View):
             return redirect('login')
         else:    
             return render(request,'update_password.html',{'form':form})
+        
+
+def search_prod(request):
+    searched = request.GET.get('searched')
+    products = Products.objects.filter(title__contains = searched)
+    return render(request,'search.html',{'products':products})
+        
+
 
 

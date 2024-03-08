@@ -1,5 +1,47 @@
-{% extends "navbar.html" %}
-
+{% extends "landing.html" %}
+{% load static %}
 {% block main %}
-<h1>About</h1>
+<!-- About 1 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5">
+    <div class="container">
+      <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+        <div class="col-12 col-lg-6 col-xl-5">
+          <img class="img-fluid rounded" loading="lazy" src="{% static "img/banner-fruits.jpg" %}" alt="About 1">
+        </div>
+        <div class="col-12 col-lg-6 col-xl-7">
+          <div class="row justify-content-xl-center">
+            <div class="col-12 col-xl-11">
+              <h2 class="mb-3">Who Are We?</h2>
+              <p class="lead fs-4 text-secondary mb-3">We are GFARM, a family-owned farm dedicated to bringing you the freshest, most flavorful produce straight from our fields to your doorstep. We believe in sustainable and responsible farming practices, using methods that nurture our land and ensure the highest quality fruits and vegetables..</p>
+              <p class="mb-5">Our passion lies in connecting you with the source of your food. We believe in the importance of knowing where your produce comes from and the care that goes into growing it. By supporting our farm, you're not just getting delicious food, you're contributing to a sustainable food system that benefits both the environment and your health..</p>
+              <div class="row gy-4 gy-md-0 gx-xxl-5X">
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4">
+                        <i class="fa-solid fa-tractor fa-lg"></i>
+                    </div>
+                    <div>
+                      <h2 class="h4 mb-3">Farm-Fresh Guarantee:</h2>
+                      <p class="text-secondary mb-0">Our produce is harvested at peak ripeness and delivered within a short time frame, locking in the natural taste and nutrients.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4">
+                        <i class="fa-solid fa-tree fa-lg"></i>
+                    </div>
+                    <div>
+                      <h2 class="h4 mb-3">Variety and Seasonality:</h2>
+                      <p class="text-secondary mb-0"> We offer a diverse selection of fruits, vegetables, and herbs that change with the seasons, ensuring you experience the best of each harvest.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock main %}
