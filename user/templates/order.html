@@ -68,17 +68,28 @@
                           style="width: 100%; border-radius: 16px; background-color: green;"
                           aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
+                      {% elif item.order_status == 'Cancelled' %}
+                      <div class="progress" style="height: 6px; border-radius: 16px;">
+                        <div class="progress-bar" role="progressbar"
+                          style="width: 100%; border-radius: 16px; background-color: red;"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
                       {% endif %}
                       <div class="d-flex justify-content-around mb-1">
                         <p class="text-muted mt-1 mb-0 small ms-xl-5">Order Placed</p>
                         <p class="text-muted mt-1 mb-0 small ms-xl-5">Shipped</p>
                         <p class="text-muted mt-1 mb-0 small ms-xl-5">Out for Delivery</p>
+                        {% if item.order_status == 'Cancelled' %}
+                        <p class="text-danger mt-1 mb-0 small ms-xl-5">Cancelled</p>
+                        {% else %}
                         <p class="text-muted mt-1 mb-0 small ms-xl-5">Delivered</p>
+                        {% endif %}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <a href="{% url 'cancel' item.id %}" class="btn btn-danger">Cancel</a>
               {% endfor %}
   
               <div class="d-flex justify-content-between pt-2">

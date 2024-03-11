@@ -9,5 +9,6 @@ urlpatterns = [
     path('deletecart/<cid>',views.CartdeleteView.as_view(),name='cdelt'),
     path('review/<int:pid>',views.addreview,name='arev'),
     path('checkout/',views.Checkout.as_view(),name='checkout'),
-    path('order/',views.Order.as_view(),name='order')
+    path('order/',views.Order.as_view(),name='order'),
+    path('cancelorder/<int:oid>',views.cancelorder,name='cancel')
 ]

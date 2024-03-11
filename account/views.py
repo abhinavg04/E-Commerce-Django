@@ -7,7 +7,22 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView,FormView,TemplateView
 from django.contrib.auth.models import User
 from . models import Products
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 # Create your views here.
+
+
+#decorator
+def signin_required(func):
+    def inner(request,**kwargs):
+        if request.user.is_authenticated:
+            return func(request,**kwargs)
+        else:
+            messages.error(request,'Login required')
+            return redirect('login')
+    return inner
+
+dec = [signin_required,never_cache]
 
 # generic template view
 class Intro(TemplateView):
@@ -57,6 +72,7 @@ def logout_user(request):
     logout(request)
     return redirect('landing')
 
+dec
 def user_page(request):
     return render(request,'user_page.html')
 
@@ -92,7 +108,7 @@ class UpdatePassword(View):
         else:    
             return render(request,'update_password.html',{'form':form})
         
-
+dec
 def search_prod(request):
     searched = request.GET.get('searched')
     products = Products.objects.filter(title__contains = searched)
