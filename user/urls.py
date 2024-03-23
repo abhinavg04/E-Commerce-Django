@@ -10,5 +10,6 @@ urlpatterns = [
     path('review/<int:pid>',views.addreview,name='arev'),
     path('checkout/',views.Checkout.as_view(),name='checkout'),
     path('order/',views.Order.as_view(),name='order'),
-    path('cancelorder/<int:oid>',views.cancelorder,name='cancel')
+    path('cancelorder/<int:oid>',views.cancelorder,name='cancel'),
+    path('review_summary/<int:id>',views.review_summary,name='review_summary')
 ]

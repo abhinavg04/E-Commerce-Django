@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView,FormView,TemplateView
 from django.contrib.auth.models import User
 from . models import Products
-from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 # Create your views here.
 

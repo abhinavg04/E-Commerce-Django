@@ -36,6 +36,7 @@
                                 <h6 class="text-uppercase">Quantity</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>Q</span> </label>
                             </div>
                             <div class="cart mt-4 align-items-center"> <a class="btn btn-success text-uppercase mr-2 px-4" href="{% url 'addcart' product.id %}">Add to cart</a> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                            <div class="cart mt-4 align-items-center"><a class="btn btn-outline-success text-uppercase mr-2 px-4" href="{% url 'review_summary' product.id %}">review summary</a></div>
                         </div>
                     </div>
                 </div>

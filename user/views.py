@@ -2,14 +2,24 @@ from typing import Any
 from django.shortcuts import render,redirect
 from django.views import View
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView,ListView,DetailView,DeleteView
+from django.views.generic import ListView,DetailView,DeleteView
 from account.models import Products,Cart,Review,Orders
 from django.contrib import messages
-from django.db.models import Sum
 from django.core.mail import send_mail
 from account.views import dec
 from django.utils.decorators import method_decorator
+import csv
 # Create your views here.
+
+def review_summary(request,id):
+     review = Review.objects.filter(products_id=id)
+     print(review)
+     with open('review.csv','w',newline='') as revcsv:
+        csvwriter = csv.writer(revcsv)
+        csvwriter.writerow(["id","review","date","product_id","user_id"])
+        for i in review:
+            csvwriter.writerow([i.id,i.review,i.date,i.products.id,i.user.id])
+     return render(request,'review_summary.html')
 
 dec
 def cancelorder(request,**kwargs):
@@ -32,7 +42,7 @@ class Order(ListView):
     context_object_name='order'
     def get_queryset(self):
         res=super().get_queryset()
-        print(self.request.session)
+        # print(self.request.session)
         res=res.filter(user=self.request.user)
         return res
 @method_decorator(dec,name='dispatch')   
@@ -63,7 +73,8 @@ def addreview(request,**kwargs):
     product_id=kwargs.get('pid')
     product = Products.objects.get(id=product_id)
     user = request.user
-    Review.objects.create(review=review,user=user,products = product)
+    review = Review.objects.create(review=review,user=user,products = product)
+    #adding a row
     messages.success(request,"review added")
     return redirect('userhome')
 dec
