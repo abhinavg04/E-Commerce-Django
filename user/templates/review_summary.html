@@ -1,5 +1,61 @@
 {% extends 'landing.html' %}
 
+<style>
+    .progress-circle {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        border-radius: 50%;
+        background: #eee;
+      }
+      .progress-circle .progress-bar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+</style>
+
 {% block main %}
-<h1>Review summary</h1>
+<section class="review_summary mt-5">
+    <h1 class="text-center">Review summary</h1>
+    <h1 class="text-center text-success">{{sentiment}}</h1>
+    <div class="d-flex justify-content-center">                                                                   
+        <div class="content text-center border border-dark p-5">
+            <div class="ratings">
+                <div class="text-success">GFARM Score</div>
+                <span class="product-rating">{{percentage}}%</span>
+                <div class="stars">
+                    {% if sentiment == 'good' %}
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    {% elif sentiment == 'average'%}
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    {% else %}
+                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+
+                    {% endif %}
+                </div>
+                <div class="rating-text">   
+                    <span>Out of {{rev}} reviews</span>
+                </div>   
+            </div>  
+        </div>
+    </div> 
+</section>
 {% endblock main %}

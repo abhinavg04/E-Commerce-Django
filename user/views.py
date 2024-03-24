@@ -9,17 +9,25 @@ from django.core.mail import send_mail
 from account.views import dec
 from django.utils.decorators import method_decorator
 import csv
+import sentiment
 # Create your views here.
 
 def review_summary(request,id):
-     review = Review.objects.filter(products_id=id)
-     print(review)
-     with open('review.csv','w',newline='') as revcsv:
-        csvwriter = csv.writer(revcsv)
-        csvwriter.writerow(["id","review","date","product_id","user_id"])
-        for i in review:
-            csvwriter.writerow([i.id,i.review,i.date,i.products.id,i.user.id])
-     return render(request,'review_summary.html')
+     sentiment.createCSV(id)
+     res = sentiment.getSentiment()
+     sum = 0
+     for i,n in res.items():
+        sum += n['compound'] 
+     result = sum/len(res)
+     if result >0.4:
+         sen = 'good'
+     elif result<0:
+         sen = 'bad'
+     else:
+         sen = 'average'
+     percent = round(result*100,2)
+     rev = Review.objects.filter(products_id=id).count()
+     return render(request,'review_summary.html',{'sentiment':sen,'percentage':percent,'rev':rev})
 
 dec
 def cancelorder(request,**kwargs):
